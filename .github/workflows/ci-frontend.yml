@@ -1,0 +1,36 @@
+name: Test Frontend (React)
+
+on:
+  push:
+    branches:
+      - main  # Change this if you're using a different branch name
+    paths:
+      - 'frontend/**'  # Only trigger workflow when files in the frontend folder change
+  pull_request:
+    branches:
+      - main  # For pull requests to the main branch
+    paths:
+      - 'frontend/**'  # Only trigger workflow when files in the frontend folder change
+
+jobs:
+  test-frontend:
+    runs-on: ubuntu-latest  # Run on an Ubuntu environment
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js (for React frontend)
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Specify the version of Node.js
+
+    - name: Install frontend dependencies
+      working-directory: frontend  # Make sure to run this in the frontend directory
+      run: |
+        npm install  # Or use yarn if you're using it
+
+    - name: Run frontend tests
+      working-directory: frontend  # Run tests in the frontend directory
+      run: |
+        npm test  # Or yarn test if you're using yarn
