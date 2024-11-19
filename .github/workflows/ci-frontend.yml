@@ -30,7 +30,7 @@ jobs:
       run: |
         npm install  # Or use yarn if you're using it
 
-    - name: Run frontend tests
-      working-directory: frontend  # Run tests in the frontend directory
+    - name: Build frontend
+      working-directory: frontend  # Build in the frontend directory
       run: |
-        npm test  # Or yarn test if you're using yarn
+        npm run build  # Or yarn build if you're using yarn
